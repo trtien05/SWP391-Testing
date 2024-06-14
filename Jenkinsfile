@@ -21,7 +21,7 @@ pipeline {
         }
         stage('Build') {
             steps {
-                bat 'mvn clean test'
+                bat 'mvn surefire-report:report'
             }
             post {
                 always {
@@ -36,7 +36,7 @@ pipeline {
                     def jiraIssueKey = env.JIRA_ISSUE_KEY
                     def jiraAuth = "Basic " + "${JIRA_CREDENTIALS}".bytes.encodeBase64().toString()
                     def status = testResults.failCount == 0 ? "Pass" : "Fail"
-                    def attachment = "target/surefire-reports/TEST-TestCalculatorCSV.xml"
+                    def attachment = "target/site/surefire-report.html"
 
                     echo "Test Results: ${testResults}"
                     echo "JIRA Issue Key: ${jiraIssueKey}"
