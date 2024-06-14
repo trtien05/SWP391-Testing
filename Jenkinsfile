@@ -70,6 +70,17 @@ pipeline {
 //                         uploadFile: attachment,
 //                         multipartName: "TEST-TestCalculatorCSV"
 //                     )
+                    bat """
+                        curl -X POST \
+                        -H "Authorization: ${jiraAuth}" \
+                        -H "Content-Type: application/json" \
+                        -d '{
+                            "fields": {
+                                "customfield_10037": "${status}"
+                            }
+                        }' \
+                        https://trantien100700.atlassian.net/rest/api/2/issue/${jiraIssueKey}/transitions
+                    """
                      bat """
                         curl -X POST \
                         -H "Authorization: ${jiraAuth}" \
