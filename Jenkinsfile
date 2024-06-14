@@ -75,7 +75,7 @@ pipeline {
                         -H "Authorization: ${jiraAuth}" \
                         -H "Content-Type: application/json" \
                         -d "{\"fields\": {\"customfield_10037\": \"${status}\" }}"\
-                        https://trantien100700.atlassian.net/rest/api/2/issue/${jiraIssueKey}/transitions
+                        https://trantien100700.atlassian.net/rest/api/2/issue/${jiraIssueKey}
                     """
                      bat """
                         curl -X POST \
